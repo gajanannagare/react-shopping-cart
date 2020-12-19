@@ -39,14 +39,16 @@ class Cart extends Component {
           <div className="cart">
             <div className="total">
               <div>
-              Total{" "}
-              {formatCurrency(
-                this.props.cartItems.reduce((a, c) => a + c.price * c.count, 0)
-              )}
-               </div>
-               <button className="button primary">Procced</button>
+                Total{" "}
+                {formatCurrency(
+                  this.props.cartItems.reduce(
+                    (a, c) => a + c.price * c.count,
+                    0
+                  )
+                )}
+              </div>
+              <button className="button primary">Procced</button>
             </div>
-            
           </div>
         )}
       </div>
