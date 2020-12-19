@@ -110,3 +110,45 @@ button:hover {
   border-bottom: .1rem solid #c0c0c0;
   justify-content: space-between;
 }
+.cart {
+  margin: 1rem;
+  padding: 1rem;
+  display: flex;
+  
+}
+.cart-header {
+  border-bottom: .1rem solid #c0c0c0;
+}
+.cast-items {
+  width: 100%;
+  padding: 0;
+  list-style-type: none;
+}
+
+.cart-items img {
+  width: 5rem;
+}
+.cart-items li {
+  display: flex;
+}
+.cart-items li div {
+  padding: .5rem;
+}
+.cart-items li div:last-child {
+  flex: 1;
+}
+.right{
+  text-align: right;
+}
+.total {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  align-items: center;  
+}
+.total > div {
+  font-size: 2rem;
+}
+.total > div, .total > button {
+  flex: 1;
+}

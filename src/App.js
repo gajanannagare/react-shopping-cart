@@ -1,5 +1,6 @@
 // Feature 1
 import React from "react";
+import Cart from "./components/Cart";
 import Filter from "./components/Filter";
 import Products from "./components/Products";
 import data from "./data.json";
@@ -12,9 +13,35 @@ class App extends React.Component {
       products: data.products,
       size: "",
       sort: "",
+      cartItems: []
     };
-    this.sizeChange = this.sizeChange.bind(this)
-    this.sortChange = this.sortChange.bind(this)
+    this.sizeChange = this.sizeChange.bind(this);
+    this.sortChange = this.sortChange.bind(this);
+    this.addToCart = this.addToCart.bind(this);
+    this.removeItem = this.removeItem.bind(this);
+  }
+  removeItem (product) {
+    const cartItems = this.state.cartItems.slice();
+    this.setState({
+      cartItems:cartItems.filter(x => x._id != product._id)
+    })
+  }
+  addToCart (product) {
+    const cartItems = this.state.cartItems.slice();
+    let alreadyInCart = false
+    cartItems.forEach(item=>{
+      console.log(item)
+      if(item._id === product._id){
+        item.count++;
+        alreadyInCart = true
+      }
+    })
+    if(!alreadyInCart){
+      cartItems.push({...product, count:1})
+    }
+    this.setState({
+      cartItems
+    })
   }
   sortChange (e) {
     const sort = e.target.value;
@@ -60,9 +87,17 @@ class App extends React.Component {
               sortChange={this.sortChange}
               sizeChange={this.sizeChange}
               />
-              <Products products={this.state.products}/>
+              <Products 
+              products={this.state.products}
+              addToCart={this.addToCart}
+              />
             </div>
-            <div className="sidebar">Cart Item</div>
+            <div className="sidebar">
+              <Cart 
+              cartItems={this.state.cartItems}
+              removeItem={this.removeItem}
+              />
+            </div>
           </div>
         </main>
         <footer>All rights is reserved</footer>
